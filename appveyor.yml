@@ -1,0 +1,54 @@
+version: '{build}'
+branches:
+  only:
+  - master
+
+#clone_folder: c:\projects\zlib
+
+image:
+  #- Visual Studio 2015
+  - Visual Studio 2017
+
+configuration:
+#  - Release
+  - Debug
+
+platform:
+  - x64
+
+environment:
+  matrix:
+  - arch: Win64
+  # - arch: #does not work, Release|x64 not a valid target
+matrix:
+  fast_finish: true
+
+# skip unsupported combinations
+init:
+  - set version=1.2.11
+  - set ipath=p:\prj\libs\%APPVEYOR_PROJECT_NAME%\%version%
+
+build_script:
+  - cd
+  - cmake --version
+
+  - md install
+  - cmd: SUBST "P:" install
+  - cmd: SUBST 
+  - dir p:
+
+
+
+  - set
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - cmd: msbuild /version
+  - dir
+  - dir p:\ /s
+  - cd /d p:\
+
+
+artifacts:
+  - path: '**\*.zip'
+#  - path: '**\*.lib'
+
+
