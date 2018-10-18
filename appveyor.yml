@@ -27,6 +27,8 @@ matrix:
 init:
   - set version=1.2.11
   - set ipath=p:\prj\libs\%APPVEYOR_PROJECT_NAME%\%version%
+  - for /f %%v in ('msbuild /version') do set _ver=%%v
+  - echo %_ver%
 
 build_script:
   - cd
@@ -47,8 +49,8 @@ build_script:
   - cd /d p:\
 
 
-artifacts:
-  - path: '**\*.zip'
+#artifacts:
+#  - path: '**\*.zip'
 #  - path: '**\*.lib'
 
 
