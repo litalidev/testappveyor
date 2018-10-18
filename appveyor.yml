@@ -29,6 +29,8 @@ init:
   - set ipath=p:\prj\libs\%APPVEYOR_PROJECT_NAME%\%version%
   - for /f %%v in ('msbuild /version') do set _ver=%%v
   - echo %_ver%
+  - for /f "tokens=1,2,3 delims=. " %%a in ("%_ver%") do set v1=%%a&set v2=%%b& set v3=%%c&set mver=%v1%.%v2%.%v3%&set nver=%%a.%%b.%%c
+  - echo %mver% %nver%
 
 build_script:
   - cd
